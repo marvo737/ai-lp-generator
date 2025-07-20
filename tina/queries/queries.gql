@@ -1,5 +1,4 @@
 query pageQuery {
-  ...LayoutQueryFragment
   pageConnection {
     edges {
       node {
@@ -13,7 +12,6 @@ query pageQuery {
 }
 
 query contentQuery($relativePath: String!) {
-  ...LayoutQueryFragment
   page(relativePath: $relativePath) {
     ...PageParts
   }

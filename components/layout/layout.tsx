@@ -9,8 +9,8 @@ type LayoutProps = PropsWithChildren & {
 };
 
 export default async function Layout({ children, rawPageData }: LayoutProps) {
-  const { data: globalData } = await client.queries.global({
-    relativePath: "index.json",
+  const { data: layoutData } = await client.queries.page({
+    relativePath: "home.mdx",
   },
     {
       fetchOptions: {
@@ -22,7 +22,7 @@ export default async function Layout({ children, rawPageData }: LayoutProps) {
   );
 
   return (
-    <LayoutProvider globalSettings={globalData.global} pageData={rawPageData}>
+    <LayoutProvider globalSettings={layoutData.page} pageData={rawPageData}>
       <Header />
       <main className="overflow-x-hidden pt-20">
         {children}
