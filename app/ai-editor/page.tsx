@@ -19,29 +19,10 @@ const AiEditorPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [viewMode, setViewMode] = useState<'preview' | 'admin'>('preview');
-  const [pages, setPages] = useState<string[]>([]);
-  const [selectedPage, setSelectedPage] = useState<string>('');
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const targetPage = 'home.mdx';
 
   useEffect(() => {
-    // ページ一覧を取得
-    const fetchPages = async () => {
-      try {
-        const response = await fetch('/api/pages');
-        if (!response.ok) {
-          throw new Error('Failed to fetch pages');
-        }
-        const data = await response.json();
-        setPages(data);
-        if (data.length > 0) {
-          setSelectedPage(data[0]);
-        }
-      } catch (err) {
-        setError(err instanceof Error ? err.message : 'Failed to load pages.');
-      }
-    };
-    fetchPages();
-
     // ローカルストレージからチャット履歴を読み込む
     try {
       const savedHistory = localStorage.getItem('chatHistory');
@@ -74,7 +55,7 @@ const AiEditorPage = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!input.trim() || isLoading || !selectedPage) return;
+    if (!input.trim() || isLoading) return;
 
     const userDisplayMessage: DisplayMessage = { role: 'user', text: input };
     setDisplayMessages((prev) => [...prev, userDisplayMessage]);
@@ -92,7 +73,7 @@ const AiEditorPage = () => {
         body: JSON.stringify({
           prompt: input,
           history: newHistory,
-          filePath: `content/pages/${selectedPage}`
+          filePath: `content/pages/${targetPage}`
         }),
       });
 
@@ -107,7 +88,7 @@ const AiEditorPage = () => {
       setDisplayMessages(prev => [...prev, { role: 'model', text: data.chatResponse }]);
 
       if (data.contentLength > 0) {
-        setDisplayMessages(prev => [...prev, { role: 'system', text: `「${selectedPage}」が更新されました。プレビューをリロードします。` }]);
+        setDisplayMessages(prev => [...prev, { role: 'system', text: `「${targetPage}」が更新されました。プレビューをリロードします。` }]);
         if (iframeRef.current) {
           iframeRef.current.src = iframeRef.current.src;
         }
@@ -135,24 +116,6 @@ const AiEditorPage = () => {
           >
             Clear
           </button>
-        </div>
-        <div className="p-4 border-b">
-          <label htmlFor="page-select" className="block text-sm font-medium text-gray-700 mb-1">
-            編集するページ
-          </label>
-          <select
-            id="page-select"
-            value={selectedPage}
-            onChange={(e) => setSelectedPage(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-            disabled={isLoading || pages.length === 0}
-          >
-            {pages.length > 0 ? (
-              pages.map(page => <option key={page} value={page}>{page}</option>)
-            ) : (
-              <option>Loading pages...</option>
-            )}
-          </select>
         </div>
         <div className="flex-grow p-4 overflow-y-auto">
           <div className="space-y-4">

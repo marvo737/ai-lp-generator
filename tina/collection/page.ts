@@ -9,12 +9,12 @@ import { statsBlockSchema } from '@/components/blocks/stats';
 import { ctaBlockSchema } from '@/components/blocks/call-to-action';
 
 const Page: Collection = {
-  label: 'Pages',
+  label: 'Home',
   name: 'page',
   path: 'content/pages',
   format: 'mdx',
   match: {
-    include: '**',
+    include: 'home',
     exclude: 'uploads/**',
   },
   ui: {

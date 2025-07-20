@@ -7,20 +7,7 @@
     },
     "name": "Test LP",
     "color": "default",
-    "nav": [
-      {
-        "href": "home",
-        "label": "Home"
-      },
-      {
-        "href": "/about",
-        "label": "About"
-      },
-      {
-        "href": "/sample",
-        "label": "Sample"
-      }
-    ]
+    "nav": []
   },
   "theme": {
     "color": "blue",
