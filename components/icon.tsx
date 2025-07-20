@@ -98,24 +98,33 @@ export const Icon = ({ data, parentColor = '', className = '', tinaField = '' })
   const iconSizeClasses = typeof size === 'string' ? iconSizeClass[size] : iconSizeClass[Object.keys(iconSizeClass)[size]];
 
   const iconColor = color ? (color === 'primary' ? theme!.color : color) : theme!.color;
+  const isColorCode = iconColor?.startsWith('#');
 
   if (style == 'circle') {
+    const circleStyle = isColorCode ? { backgroundColor: iconColor } : {};
+    const circleClasses = !isColorCode ? iconColorClass[iconColor]?.circle || iconColorClass['blue'].circle : '';
+
     return (
       <div
-        {...(tinaField ? { 'data-tina-field': tinaField } : {})} // only render data-tina-field if it exists
-        className={`relative z-10 inline-flex items-center justify-center shrink-0 ${iconSizeClasses} rounded-full ${iconColorClass[iconColor].circle} ${className}`}
+        {...(tinaField ? { 'data-tina-field': tinaField } : {})}
+        className={`relative z-10 inline-flex items-center justify-center shrink-0 ${iconSizeClasses} rounded-full ${circleClasses} ${className}`}
+        style={circleStyle}
       >
         <IconSVG className='w-2/3 h-2/3' />
       </div>
     );
   } else {
-    const safeIconColor = iconColor && iconColorClass[iconColor] ? iconColor : 'blue';
-    const iconColorClasses =
-      iconColorClass[parentColor === 'primary' && (safeIconColor === theme!.color || safeIconColor === 'primary') ? 'white' : safeIconColor!].regular;
+    const safeIconColor = iconColor && (iconColorClass[iconColor] || isColorCode) ? iconColor : 'blue';
+    const iconStyle = isColorCode ? { color: safeIconColor } : {};
+    const iconColorClasses = !isColorCode
+      ? iconColorClass[parentColor === 'primary' && (safeIconColor === theme!.color || safeIconColor === 'primary') ? 'white' : safeIconColor!]?.regular || iconColorClass['blue'].regular
+      : '';
+
     return (
       <IconSVG
-        {...(tinaField ? { 'data-tina-field': tinaField } : {})} // only render data-tina-field if it exists
+        {...(tinaField ? { 'data-tina-field': tinaField } : {})}
         className={`${iconSizeClasses} ${iconColorClasses} ${className}`}
+        style={iconStyle}
       />
     );
   }
