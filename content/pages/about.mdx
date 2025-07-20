@@ -1,6 +1,113 @@
 ---
+title: 横浜家系ラーメン 頂 -ITADAKI- 池袋総本店
 blocks:
-  - body: "# What is this?\n\nThis is a [TinaCMS](https://tina.io)-enabled Next.js app, so you can edit your content on a live page. In this project the Tina file-based CMS is used via GraphQL: it's powered by a schema that *you* define. It not only serves content from Markdown files in your repository, but it also generates TinaCMS forms for you automatically ✨.\n\n## New to TinaCMS?\n\nTinaCMS is feature-rich, and leaves a lot of power up to the user on how it's configured.\n\nThere can be a learning curve as you get to grips with how it all fits together.\n\nThe tutorials in our docs will guide you through the basics, to the more advanced ways to use the tool.\n\nCheck out the [Learning Guide](https://tina.io/docs/beginner-tutorials/tutorial-overview) it covers all you need to get up and running with TinaCMS.\n\n## Requirements\n\n* Git\n* [Node.js Active LTS](https://nodejs.org/en/about/releases/)\n* NPM, Yarn, pnpm, or bun\n\n## Install\n\nInstall the project's dependencies:\n\n<scriptCopyBlock\n  codeLanguage=\"bash\"\n  lightTheme=\"catppuccin-latte\"\n  darkTheme=\"catppuccin-mocha\"\n  commandMap=\"npm|npm install\n  pnpm|pnpm install\n  yarn|yarn install\n  bun|bun install\"\n/>\n\n## Run the project locally\n\nTo run the local development server:\n\n<scriptCopyBlock\n  codeLanguage=\"bash\"\n  lightTheme=\"catppuccin-latte\"\n  darkTheme=\"catppuccin-mocha\"\n  commandMap=\"npm|npm run dev\n  pnpm|pnpm run dev\n  yarn|yarn dev\n  bun|bun run dev\"\n/>\n\nThis command starts the GraphQL server and the Next.js application in development mode. It also regenerates your schema types for TypeScript and GraphQL so changes to your `/tina/config.ts` are reflected immediately.\n\nOne of the most interesting aspects of the TinaCloud Content API is that it doesn't actually require anything from the cloud to work locally. Since TinaCMS is by default a Git-backed CMS, everything can be run from your local filesystem via the CLI. \U0001F60E\n\nThis is ideal for development workflows and the API is identical to the one used in TinaCloud, so once you're ready to deploy your application you won't face any challenges there.\n\nOpen [`http://localhost:3000`](http://localhost:3000) in your browser to see your file-based content being loaded from the GraphQL API.\n\nWant to learn more? Go through the [Learning Guide](https://tina.io/docs/beginner-tutorials/tutorial-overview) to understand how to customise your TinaCMS experience.\n\n## Connect to Tina Cloud\n\nWhile the fully-local development workflow is the recommended way for developers to work,\nyou'll obviously want other editors and collaborators to be able to make changes on a hosted website with authentication.\n\nCheck out the docs on how to connect to our hosted backend - [Going to Production with TinaCloud](https://tina.io/docs/tina-cloud/overview)\n\n## Deploy\n\nSites using TinaCMS and TinaCloud can be deployed to lots of hosting providers.\n\nWe have documented some of the popular ones:\n\n* [Vercel](https://tina.io/docs/tina-cloud/deployment-options/vercel)\n* [Netlify](https://tina.io/docs/tina-cloud/deployment-options/netlify)\n* [GitHub Pages](https://tina.io/docs/tina-cloud/deployment-options/github-pages)\n* [Alibaba Cloud](https://tina.io/docs/tina-cloud/deployment-options/alibaba-cloud)\n\nIf your favourite isn't listed here, it doesn't mean that it isn't supported - we just don't have documentation for it yet.\n\n***\n\n## Getting Help\n\nYou might face issues, want to provide feedback or get help with any challenges you may have:\n\n* Read the [TinaCloud documentation](https://tina.io/docs/tina-cloud/).\n* [Join our Discord](https://discord.gg/zumN63Ybpf).\n* Visit the [community forum](https://community.tinacms.org/) to ask questions.\n* Reach out to us on Twitter at [@TinaCMS](https://x.com/tinacms).\n* [Email us](mailto\\:support@tina.io) to schedule a call with our team and share more about your context and what you're trying to achieve.\n\n## LICENSE\n\nLicensed under the [Apache 2.0 license](./LICENSE).\n"
-    _template: content
+  - background: ''
+    text: '【オープン記念】ラーメン一杯500円！さらにライス無料＆おかわり自由！'
+    url: '/campaign'
+    _template: callout
+  - background: bg-stone-100/80
+    headline: 横浜家系ラーメン 頂 -ITADAKI-
+    tagline: 池袋の頂点へ。本物の『家系』が、今、ここに。
+    actions:
+      - label: お品書きを見る
+        type: button
+        icon:
+          name: BiSolidBowlRice
+          color: white
+        link: /menu
+      - label: 店舗情報
+        type: link
+        link: /access
+    image:
+      src: '/uploads/ramen-hero.jpg'
+      alt: 頂 -ITADAKI-の濃厚豚骨醤油ラーメン
+      videoUrl: ''
+    _template: hero
+  - background: bg-amber-50
+    title: 数字で語る、頂のこだわり
+    description: >-
+      一杯のラーメンに込めた情熱と、お客様への感謝を数字でご紹介します。
+    stats:
+      - stat: 18
+        type: スープを炊き込む時間
+      - stat: 3
+        type: 池袋駅西口からの徒歩
+      - stat: 100
+        type: 一日平均『まくり証明書』発行枚数
+    _template: stats
+  - title: 頂が譲れない、三つの魂
+    description: スープ、麺、そして心。我々が一杯に込める全てです。
+    items:
+      - icon:
+          name: BiSolidFlame
+          color: red
+          style: float
+        title: 濃厚にしてキレのある『王道・豚骨醤油スープ』
+        text: >-
+          国産の豚骨と鶏ガラを18時間以上炊き続け、旨味を極限まで引き出したスープ。醤油ダレのキレが後を引く、まさに王道の味わいです。
+      - icon:
+          name: BiSolidStar
+          color: yellow
+          style: float
+        title: スープに負けない『特注・中太ストレート麺』
+        text: >-
+          数多の製麺所と試作を重ねて生まれた、頂だけの特注麺。短く、もちもちとした食感で、スープとの絡みは抜群。麺の硬さはお好みで調整可能です。
+      - icon:
+          name: BiSolidHeart
+          color: pink
+          style: float
+        title: 最高の脇役と『最高のおもてなし』
+        text: >-
+          燻製チャーシュー、こだわりの海苔、そして食べ放題の国産米。卓上の豊富な調味料で『自分好みの一杯』を完成させてください。元気な接客でお迎えします！
+    _template: features
+  - title: お客様の声
+    description: >-
+      オープン直後から、多くのラーメン好きに愛されています。
+    testimonials:
+      - quote: >-
+          これぞ本物の家系！ガツンとくるスープとモチモチの麺が最高。ライスとの相性も抜群で、気づいたら完食してました。絶対また来ます！
+        author: 家系大好きマン様
+        role: 会社員・30代
+        avatar: /uploads/testimonials/ramen-lover-man.png
+      - quote: >-
+          ほうれん草増し、味濃いめ、油多めが私の定番。卓上のにんにくや豆板醤で味変するのも楽しい。女性一人でも入りやすい雰囲気なのが嬉しいです。
+        author: イケブクロOL様
+        role: 会社員・20代
+        avatar: /uploads/testimonials/ramen-lover-woman.png
+      - quote: >-
+          友達に勧められて初訪問。噂通りの濃厚さ！でも後味はスッキリしていて驚きました。店員さんの活気も良くて、元気をもらえました。
+        author: ラーメン巡り中様
+        role: 大学生・20代
+        avatar: /uploads/testimonials/student-ramen.png
+      - quote: >-
+          飲んだ後の〆は絶対ここ。深夜までやってるのがありがたい。しょっぱいスープが体に染み渡ります。まくり証明書、集めてます！
+        author: 〆の帝王様
+        role: 自営業・40代
+        avatar: /uploads/testimonials/salaryman-drunk.png
+      - quote: >-
+          子供用の椅子や取り皿も用意してくれて、家族連れでも安心して利用できました。子供も美味しいって喜んでました。
+        author: 池袋ファミリー様
+        role: 主婦・30代
+        avatar: /uploads/testimonials/family-ramen.png
+      - quote: >-
+          チャーシューがスモーキーで絶品。チャーシュー麺にして大正解でした。次はトッピング全部乗せに挑戦したい。
+        author: 肉食男子様
+        role: 専門学生・10代
+        avatar: /uploads/testimonials/chashu-lover.png
+    _template: testimonial
+  - title: さあ、頂点の一杯を。
+    description: >-
+      池袋駅西口から徒歩3分。あなたの挑戦を、お待ちしています。
+    actions:
+      - label: X(旧Twitter)で最新情報を見る
+        type: button
+        icon:
+          name: BiLogoTwitter
+          color: white
+          style: ''
+        link: /twitter
+      - label: アクセス＆営業時間
+        type: link
+        link: /access
+    _template: cta
 ---
-

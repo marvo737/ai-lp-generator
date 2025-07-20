@@ -7,7 +7,7 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 // 改良されたAPI Route実装
 export async function POST(request: Request) {
   try {
-    const { prompt, config } = await request.json();
+    const { prompt, config, history = [], filePath: relativeFilePath } = await request.json();
 
     if (!prompt) {
       return NextResponse.json({ error: 'Prompt is required' }, { status: 400 });
@@ -17,7 +17,21 @@ export async function POST(request: Request) {
       promptManager.updateConfig(config);
     }
 
-    const fullPromptContext = await promptManager.generatePrompt(prompt);
+    let fullPromptContext = await promptManager.generatePrompt(prompt);
+
+    // filePathが指定されていれば、ファイルの内容を読み込んでプロンプトに追加
+    if (relativeFilePath) {
+      const fs = await import('fs/promises');
+      const path = await import('path');
+      const filePath = path.join(process.cwd(), relativeFilePath);
+      try {
+        const existingContent = await fs.readFile(filePath, 'utf-8');
+        fullPromptContext += `\n\n以下は編集対象の現在のファイル（${relativeFilePath}）の内容です。この内容を考慮して、指示に従ってください。\n\n\`\`\`markdown\n${existingContent}\n\`\`\``;
+      } catch (e) {
+        // ファイルが存在しない場合は、その旨をログに出力して続行
+        console.log(`File not found: ${filePath}, proceeding without existing content.`);
+      }
+    }
     const modelName = process.env.GEMINI_MODEL_NAME || 'gemini-1.5-pro-latest';
     const model = genAI.getGenerativeModel({
       model: modelName,
@@ -28,26 +42,14 @@ export async function POST(request: Request) {
     });
 
     const chat = model.startChat({
-      history: [
-        {
-          role: 'user',
-          parts: [{ text: fullPromptContext }],
-        },
-        {
-          role: 'model',
-          parts: [{ text: JSON.stringify({
-            mdxContent: null,
-            chatResponse: "承知いたしました。提供されたスキーマ定義とテンプレート構造を完全に理解しました。厳密なJSON形式に従って、新しいコンテンツを生成します。どのようなテーマで作成しますか？"
-          }) }],
-        },
-      ],
+      history: history,
       generationConfig: {
         maxOutputTokens: process.env.GEMINI_MAX_OUTPUT_TOKENS ? parseInt(process.env.GEMINI_MAX_OUTPUT_TOKENS, 10) : 8192,
         temperature: process.env.GEMINI_TEMPERATURE ? parseFloat(process.env.GEMINI_TEMPERATURE) : 0.7,
       },
     });
 
-    const result = await chat.sendMessage(prompt);
+    const result = await chat.sendMessage(fullPromptContext);
     const response = await result.response;
     const rawContent = response.text();
 
@@ -64,10 +66,10 @@ export async function POST(request: Request) {
     const { mdxContent, chatResponse } = parsedResponse;
 
     // mdxContentが存在し、空でない場合のみファイルに書き込む
-    if (mdxContent && typeof mdxContent === 'string' && mdxContent.trim() !== '') {
+    if (mdxContent && typeof mdxContent === 'string' && mdxContent.trim() !== '' && relativeFilePath) {
       const fs = await import('fs/promises');
       const path = await import('path');
-      const filePath = path.join(process.cwd(), 'content', 'pages', 'home.mdx');
+      const filePath = path.join(process.cwd(), relativeFilePath);
       
       try {
         await fs.writeFile(filePath, mdxContent);
@@ -84,12 +86,15 @@ export async function POST(request: Request) {
 
     const stats = promptManager.getStats();
 
+    const newHistory = await chat.getHistory();
+
     // フロントエンドには常にchatResponseを返す
     return NextResponse.json({
       success: true,
       chatResponse: chatResponse || "処理が完了しました。",
       stats,
-      contentLength: mdxContent ? mdxContent.length : 0
+      contentLength: mdxContent ? mdxContent.length : 0,
+      history: newHistory,
     });
 
   } catch (error) {

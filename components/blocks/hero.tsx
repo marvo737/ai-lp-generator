@@ -105,7 +105,7 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
 };
 
 const ImageBlock = ({ image }: { image: PageBlocksHeroImage }) => {
-  if (image.videoUrl) {
+  if (image.type === 'Video' && image.videoUrl) {
     let videoId = '';
     if (image.videoUrl) {
       const embedPrefix = '/embed/';
@@ -130,6 +130,7 @@ const ImageBlock = ({ image }: { image: PageBlocksHeroImage }) => {
       />
     );
   }
+  return null;
 };
 
 export const heroBlockSchema: Template = {
@@ -197,6 +198,12 @@ export const heroBlockSchema: Template = {
       label: 'Image',
       name: 'image',
       fields: [
+        {
+          type: 'string',
+          label: 'Type',
+          name: 'type',
+          options: ['Image', 'Video'],
+        },
         {
           name: 'src',
           label: 'Image Source',
