@@ -127,6 +127,7 @@ export const ctaBlockSchema: Template = {
     name: "cta",
     label: "CTA",
     fields: [
+        sectionBlockSchemaField as any,
         { type: "string", label: "Title", name: "title" },
         { type: "string", label: "Description", name: "description", ui: { component: "textarea" } },
         {

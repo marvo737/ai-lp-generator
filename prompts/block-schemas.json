@@ -156,6 +156,7 @@
       "type": "object",
       "properties": {
         "_template": { "const": "cta" },
+        "background": { "type": "string" },
         "title": { "type": "string" },
         "description": { "type": "string" },
         "actions": {
