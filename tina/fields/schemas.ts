@@ -115,7 +115,7 @@ export const statsBlockSchema: Template = {
         {
             type: "object", label: "Stats", name: "stats", list: true,
             fields: [
-                { type: "string", label: "Stat", name: "stat" },
+                { type: "number", label: "Stat", name: "stat" },
                 { type: "string", label: "Type", name: "type" },
             ],
         },

@@ -81,7 +81,7 @@ export const statsBlockSchema: Template = {
             },
             fields: [
                 {
-                    type: "string",
+                    type: "number",
                     label: "Stat",
                     name: "stat",
                 },
