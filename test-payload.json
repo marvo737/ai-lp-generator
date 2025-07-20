@@ -1,8 +1,0 @@
-{
-  "blockName": "team",
-  "blockLabel": "Team Section",
-  "fields": [
-    { "type": "string", "name": "heading", "label": "Heading" },
-    { "type": "string", "name": "subheading", "label": "Subheading" }
-  ]
-}
