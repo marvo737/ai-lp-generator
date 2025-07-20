@@ -1,6 +1,10 @@
 import type { Collection } from 'tinacms';
 import { iconSchema } from '../fields/icon';
 import { ColorPickerInput } from '../fields/color';
+import fs from 'fs';
+import path from 'path';
+
+const blocksDir = path.join(process.cwd(), 'components', 'blocks');
 import { heroBlockSchema } from '@/components/blocks/hero';
 import { contentBlockSchema } from '@/components/blocks/content';
 import { testimonialBlockSchema } from '@/components/blocks/testimonial';
@@ -9,6 +13,7 @@ import { videoBlockSchema } from '@/components/blocks/video';
 import { calloutBlockSchema } from '@/components/blocks/callout';
 import { statsBlockSchema } from '@/components/blocks/stats';
 import { ctaBlockSchema } from '@/components/blocks/call-to-action';
+import { profileBlockSchema } from '@/components/blocks/profile'; // 手動で追加
 
 const Page: Collection = {
   label: 'Home',
@@ -175,6 +180,7 @@ const Page: Collection = {
         contentBlockSchema,
         testimonialBlockSchema,
         videoBlockSchema,
+        profileBlockSchema, // 手動で追加
       ],
     },
   ],

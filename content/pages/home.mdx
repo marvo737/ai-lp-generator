@@ -13,11 +13,7 @@ theme:
   font: sans
   darkMode: light
 blocks:
-  - background: 'bg-teal-100'
-    text: '【グランドオープン記念】今なら会員登録で入会金無料＆初回1時間無料！'
-    url: /campaign
-    _template: callout
-  - background: 'bg-white'
+  - background: bg-white
     headline: DiG-iN IKEBUKURO
     tagline: 池袋駅西口徒歩1分。喧騒を抜け、自分だけの世界へ。最高峰スペックと静寂が、あなたのポテンシャルを解放する。
     actions:
@@ -35,7 +31,12 @@ blocks:
       alt: 明るく開放的な空間で最新PCを利用するイメージ
       videoUrl: ''
     _template: hero
-  - title: ただのネカフェじゃない。最高のパフォーマンスを約束する3つの理由。
+  - background: bg-teal-100
+    text: 【グランドオープン記念】今なら会員登録で入会金無料＆初回1時間無料！
+    url: /campaign
+    _template: callout
+  - background: bg-gray-50
+    title: ただのネカフェじゃない。最高のパフォーマンスを約束する3つの理由。
     description: DiG-iNは、あなたの「集中したい」「楽しみたい」「創造したい」を叶えるために、ハードウェア、空間、ネットワークの全てを最高水準で設計しました。
     items:
       - icon:
@@ -43,33 +44,36 @@ blocks:
           color: '#14B8A6'
           style: float
         title: プロ仕様のハイスペックPC
-        text: 最新世代CPUとグラボを全席に標準装備。4Kゲーミング、VR、重いクリエイティブ作業も、遅延なく快適に。
+        text: |
+          最新世代CPUとグラボを全席に標準装備。4Kゲーミング、VR、重いクリエイティブ作業も、遅延なく快適に。
       - icon:
           name: BiSolidVolumeMute
           color: '#3B82F6'
           style: float
         title: 完全個室の集中ブース
-        text: 高い遮音性を誇る完全個室ブースを完備。Web会議や配信、ボイスチャットも、周りを気にせず思いのままに。
+        text: |
+          高い遮音性を誇る完全個室ブースを完備。Web会議や配信、ボイスチャットも、周りを気にせず思いのままに。
       - icon:
           name: BiSolidTachometer
           color: '#F97316'
           style: float
         title: 専用10Gbps超高速回線
-        text: 時間帯による速度低下とは無縁の、当店専用の光回線を導入。大容量データのDLも、オンライン対戦も、常に安定した接続を保証します。
+        text: |
+          時間帯による速度低下とは無縁の、当店専用の光回線を導入。大容量データのDLも、オンライン対戦も、常に安定した接続を保証します。
     _template: features
-    background: 'bg-gray-50'
-  - background: 'bg-teal-500'
+  - background: bg-teal-500
     title: DiG-iNを支える圧倒的スペック
     description: 池袋駅西口からわずか60秒。120席の多様なブースと、プロも納得の環境でお待ちしています。
     stats:
       - stat: 1
-        label: 駅からの徒歩
+        type: 駅から
       - stat: 120
-        label: 総ブース数
+        type: 利用数
       - stat: 10
-        label: 最大回線速度
+        type: 分
     _template: stats
-  - title: ご利用者様の声
+  - background: bg-white
+    title: ご利用者様の声
     description: オープンに先駆けてご利用いただいた方々から、嬉しいフィードバックが届いています。
     testimonials:
       - quote: 池袋に求めていたのはまさにこれ。PCスペックはもちろん、マウスやキーボードの質も高い。防音個室でVCしながらのプレイは格別でした。
@@ -80,7 +84,8 @@ blocks:
         author: M.I様
         role: 映像クリエイター
         avatar: 'https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg'
-      - quote: 急なオンライン会議で利用しました。個室の防音性が高く、背景もシンプルなのでバーチャル背景なしでも問題なし。会社の近くにできてくれて本当に助かります。
+      - quote: >-
+          急なオンライン会議で利用しました。個室の防音性が高く、背景もシンプルなのでバーチャル背景なしでも問題なし。会社の近くにできてくれて本当に助かります。
         author: K.S様
         role: 会社員
         avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg'
@@ -89,7 +94,6 @@ blocks:
         role: 専門学生
         avatar: 'https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg'
     _template: testimonial
-    background: 'bg-white'
   - title: 最高のデジタル体験を、今すぐ。
     description: あなたのためのプライベート・デジタル空間が、池袋に誕生。空席を確認して、今すぐ予約しよう。
     actions:
@@ -104,5 +108,12 @@ blocks:
         type: link
         link: /pricing
     _template: cta
-    background: 'bg-gray-50'
+  - background: bg-white
+    name: Roo the AI Engineer
+    bio: >-
+      A highly skilled software engineer specializing in dynamic code generation
+      and system integration.
+    avatar: 'https://avatars.githubusercontent.com/u/10359311?v=4'
+    _template: profile
 ---
+
