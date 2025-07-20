@@ -15,7 +15,7 @@ export const CallToAction = ({ data }: { data: PageBlocksCta }) => {
                 <p className="mt-4" data-tina-field={tinaField(data, 'description')}>{data.description}</p>
 
                 <div className="mt-12 flex flex-wrap justify-center gap-4">
-                    {data.actions && data.actions.map(action => (
+                    {data.actions && data.actions.filter(action => action && action.link).map(action => (
                         <div
                             key={action!.label}
                             data-tina-field={tinaField(action)}

@@ -77,7 +77,7 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
 
         <AnimatedGroup variants={transitionVariants} className='mt-12 flex flex-col items-center justify-center gap-2 md:flex-row'>
           {data.actions &&
-            data.actions.map((action) => (
+            data.actions.filter(action => action && action.link).map((action) => (
               <div key={action!.label} data-tina-field={tinaField(action)} className='bg-foreground/10 rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5'>
                 <Button asChild size='lg' variant={action!.type === 'link' ? 'ghost' : 'default'} className='rounded-xl px-5 text-base'>
                   <Link href={action!.link!}>
@@ -200,7 +200,11 @@ export const heroBlockSchema: Template = {
         {
           name: 'src',
           label: 'Image Source',
-          type: 'image',
+          type: 'string',
+          description: 'Enter an external image URL (e.g., https://example.com/image.jpg) or select from TinaCMS media library',
+          ui: {
+            component: 'image',
+          },
         },
         {
           name: 'alt',

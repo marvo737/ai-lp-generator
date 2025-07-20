@@ -29,12 +29,23 @@ const transitionVariants = {
 };
 
 export const Callout = ({ data }: { data: PageBlocksCallout }) => {
+    // data.urlが存在しない場合は何もレンダリングしない
+    if (!data.url) {
+        return (
+            <Section background={data.background!} className='py-6'>
+                <div className='text-center text-red-500'>
+                    Callout Block: URL is missing.
+                </div>
+            </Section>
+        )
+    }
+
     return (
         <Section background={data.background!} className='py-6'>
             <AnimatedGroup variants={transitionVariants}>
                 <Link
                     data-tina-field={tinaField(data, 'url')}
-                    href={data.url!}
+                    href={data.url}
                     className='hover:bg-background dark:hover:border-t-border bg-muted group mx-auto flex w-fit items-center gap-4 rounded-full border p-1 pl-4 shadow-md shadow-zinc-950/5 transition-colors duration-300 dark:border-t-white/5 dark:shadow-zinc-950'
                 >
                     <span data-tina-field={tinaField(data, 'text')} className='text-foreground text-sm'>

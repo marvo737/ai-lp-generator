@@ -12,6 +12,11 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'res.cloudinary.com',
         port: '',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
       }
     ],
   },
@@ -39,6 +44,10 @@ const nextConfig: NextConfig = {
       {
         source: '/admin',
         destination: '/admin/index.html',
+      },
+      {
+        source: '/uploads/:path*',
+        destination: '/uploads/:path*',
       },
     ];
   },

@@ -1,0 +1,170 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "TinaCMS Block Schemas",
+  "type": "object",
+  "definitions": {
+    "icon": {
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "color": { "type": "string" },
+        "style": { "type": "string" }
+      },
+      "required": ["name", "color", "style"]
+    },
+    "action": {
+      "type": "object",
+      "properties": {
+        "label": { "type": "string" },
+        "type": { "type": "string", "enum": ["button", "link"] },
+        "icon": { "$ref": "#/definitions/icon" },
+        "link": { "type": "string" }
+      },
+      "required": ["label", "type", "link"]
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "src": { "type": "string", "format": "uri" },
+        "alt": { "type": "string" },
+        "videoUrl": { "type": "string", "format": "uri" }
+      },
+      "required": ["src", "alt"]
+    }
+  },
+  "blocks": {
+    "hero": {
+      "type": "object",
+      "properties": {
+        "_template": { "const": "hero" },
+        "background": { "type": "string" },
+        "headline": { "type": "string" },
+        "tagline": { "type": "string" },
+        "actions": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/action" }
+        },
+        "image": { "$ref": "#/definitions/image" }
+      },
+      "required": ["_template", "headline"],
+      "description": "大きく目立つセクション、通常はページの上部に配置"
+    },
+    "content": {
+      "type": "object",
+      "properties": {
+        "_template": { "const": "content" },
+        "background": { "type": "string" },
+        "body": { "type": "string", "contentType": "rich-text" }
+      },
+      "required": ["_template", "body"],
+      "description": "一般的なリッチテキストコンテンツ用の柔軟なブロック"
+    },
+    "testimonial": {
+      "type": "object",
+      "properties": {
+        "_template": { "const": "testimonial" },
+        "background": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "testimonials": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "quote": { "type": "string" },
+              "author": { "type": "string" },
+              "role": { "type": "string" },
+              "avatar": { "type": "string", "format": "uri" }
+            },
+            "required": ["quote", "author"]
+          }
+        }
+      },
+      "required": ["_template", "testimonials"],
+      "description": "ユーザーからの引用や推薦文を表示するセクション"
+    },
+    "features": {
+      "type": "object",
+      "properties": {
+        "_template": { "const": "features" },
+        "background": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "items": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "icon": { "$ref": "#/definitions/icon" },
+              "title": { "type": "string" },
+              "text": { "type": "string", "contentType": "rich-text" }
+            },
+            "required": ["title", "text"]
+          }
+        }
+      },
+      "required": ["_template", "items"],
+      "description": "複数の機能をグリッド形式で紹介するブロック"
+    },
+    "video": {
+      "type": "object",
+      "properties": {
+        "_template": { "const": "video" },
+        "background": { "type": "string" },
+        "color": { "type": "string", "enum": ["default", "tint", "primary"] },
+        "url": { "type": "string", "format": "uri" },
+        "autoPlay": { "type": "boolean" },
+        "loop": { "type": "boolean" }
+      },
+      "required": ["_template", "url"],
+      "description": "動画を埋め込むためのブロック"
+    },
+    "callout": {
+      "type": "object",
+      "properties": {
+        "_template": { "const": "callout" },
+        "background": { "type": "string" },
+        "text": { "type": "string" },
+        "url": { "type": "string", "format": "uri" }
+      },
+      "required": ["_template", "text", "url"],
+      "description": "他のページへのリンクを含む小さな注目ブロック"
+    },
+    "stats": {
+      "type": "object",
+      "properties": {
+        "_template": { "const": "stats" },
+        "background": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "stats": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "stat": { "type": "string" },
+              "type": { "type": "string" }
+            },
+            "required": ["stat", "type"]
+          }
+        }
+      },
+      "required": ["_template", "stats"],
+      "description": "重要な数値や統計を表示するブロック"
+    },
+    "cta": {
+      "type": "object",
+      "properties": {
+        "_template": { "const": "cta" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "actions": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/action" }
+        }
+      },
+      "required": ["_template"],
+      "description": "特定のユーザーアクションを促すためのブロック"
+    }
+  }
+}

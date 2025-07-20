@@ -1,15 +1,15 @@
 {
   "header": {
     "icon": {
-      "name": "Tina",
+      "name": "BiSolidSmile",
       "color": "orange",
       "style": "float"
     },
-    "name": "Tina Starter",
+    "name": "Test LP",
     "color": "default",
     "nav": [
       {
-        "href": "/",
+        "href": "home",
         "label": "Home"
       },
       {
@@ -17,36 +17,8 @@
         "label": "About"
       },
       {
-        "href": "/posts",
-        "label": "Blog"
-      }
-    ]
-  },
-  "footer": {
-    "social": [
-      {
-        "icon": {
-          "name": "FaLinkedin"
-        },
-        "url": "https://www.linkedin.com/company/tinacms"
-      },
-      {
-        "icon": {
-          "name": "FaGithub"
-        },
-        "url": "https://github.com/tinacms/tinacms"
-      },
-      {
-        "icon": {
-          "name": "FaYoutube"
-        },
-        "url": "https://www.youtube.com/@TinaCMS"
-      },
-      {
-        "icon": {
-          "name": "FaXTwitter"
-        },
-        "url": "https://x.com/TinaCMS"
+        "href": "/sample",
+        "label": "Sample"
       }
     ]
   },

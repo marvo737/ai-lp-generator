@@ -114,9 +114,13 @@ export const testimonialBlockSchema: Template = {
           name: "role",
         },
         {
-          type: "image",
+          type: "string",
           label: "Avatar",
           name: "avatar",
+          description: 'Enter an external image URL (e.g., https://example.com/avatar.jpg) or select from TinaCMS media library',
+          ui: {
+            component: 'image',
+          },
         }
       ],
     },

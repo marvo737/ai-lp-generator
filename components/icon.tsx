@@ -109,8 +109,9 @@ export const Icon = ({ data, parentColor = '', className = '', tinaField = '' })
       </div>
     );
   } else {
+    const safeIconColor = iconColor && iconColorClass[iconColor] ? iconColor : 'blue';
     const iconColorClasses =
-      iconColorClass[parentColor === 'primary' && (iconColor === theme!.color || iconColor === 'primary') ? 'white' : iconColor!].regular;
+      iconColorClass[parentColor === 'primary' && (safeIconColor === theme!.color || safeIconColor === 'primary') ? 'white' : safeIconColor!].regular;
     return (
       <IconSVG
         {...(tinaField ? { 'data-tina-field': tinaField } : {})} // only render data-tina-field if it exists

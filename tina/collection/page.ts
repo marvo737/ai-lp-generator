@@ -13,6 +13,10 @@ const Page: Collection = {
   name: 'page',
   path: 'content/pages',
   format: 'mdx',
+  match: {
+    include: '**',
+    exclude: 'uploads/**',
+  },
   ui: {
     router: ({ document }) => {
       const filepath = document._sys.breadcrumbs.join('/');
