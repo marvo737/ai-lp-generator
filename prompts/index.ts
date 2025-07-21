@@ -83,6 +83,7 @@ export interface StatsBlock {
 }
 export interface CtaBlock {
   _template: "cta";
+  background?: string;
   title?: string;
   description?: string;
   actions?: ActionField[];

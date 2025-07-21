@@ -37,7 +37,7 @@
       "type": "object",
       "properties": {
         "_template": { "const": "hero" },
-        "background": { "type": "string" },
+        "background": { "type": "string", "description": "セクションの背景色をTailwind CSSクラスで指定します。例: 'bg-white/80', 'bg-gray-50/80', 'bg-sky-50/80' など。" },
         "headline": { "type": "string" },
         "tagline": { "type": "string" },
         "actions": {
@@ -53,7 +53,7 @@
       "type": "object",
       "properties": {
         "_template": { "const": "content" },
-        "background": { "type": "string" },
+        "background": { "type": "string", "description": "セクションの背景色をTailwind CSSクラスで指定します。例: 'bg-white/80', 'bg-gray-50/80', 'bg-sky-50/80' など。" },
         "body": { "type": "string", "contentType": "rich-text" }
       },
       "required": ["_template", "body"],
@@ -63,7 +63,7 @@
       "type": "object",
       "properties": {
         "_template": { "const": "testimonial" },
-        "background": { "type": "string" },
+        "background": { "type": "string", "description": "セクションの背景色をTailwind CSSクラスで指定します。例: 'bg-white/80', 'bg-gray-50/80', 'bg-sky-50/80' など。" },
         "title": { "type": "string" },
         "description": { "type": "string" },
         "testimonials": {
@@ -87,7 +87,7 @@
       "type": "object",
       "properties": {
         "_template": { "const": "features" },
-        "background": { "type": "string" },
+        "background": { "type": "string", "description": "セクションの背景色をTailwind CSSクラスで指定します。例: 'bg-white/80', 'bg-gray-50/80', 'bg-sky-50/80' など。" },
         "title": { "type": "string" },
         "description": { "type": "string" },
         "items": {
@@ -110,7 +110,7 @@
       "type": "object",
       "properties": {
         "_template": { "const": "video" },
-        "background": { "type": "string" },
+        "background": { "type": "string", "description": "セクションの背景色をTailwind CSSクラスで指定します。例: 'bg-white/80', 'bg-gray-50/80', 'bg-sky-50/80' など。" },
         "color": { "type": "string", "enum": ["default", "tint", "primary"] },
         "url": { "type": "string", "format": "uri" },
         "autoPlay": { "type": "boolean" },
@@ -123,7 +123,7 @@
       "type": "object",
       "properties": {
         "_template": { "const": "callout" },
-        "background": { "type": "string" },
+        "background": { "type": "string", "description": "セクションの背景色をTailwind CSSクラスで指定します。例: 'bg-white/80', 'bg-gray-50/80', 'bg-sky-50/80' など。" },
         "text": { "type": "string" },
         "url": { "type": "string", "format": "uri" }
       },
@@ -134,7 +134,7 @@
       "type": "object",
       "properties": {
         "_template": { "const": "stats" },
-        "background": { "type": "string" },
+        "background": { "type": "string", "description": "セクションの背景色をTailwind CSSクラスで指定します。例: 'bg-white/80', 'bg-gray-50/80', 'bg-sky-50/80' など。" },
         "title": { "type": "string" },
         "description": { "type": "string" },
         "stats": {
@@ -156,7 +156,7 @@
       "type": "object",
       "properties": {
         "_template": { "const": "cta" },
-        "background": { "type": "string" },
+        "background": { "type": "string", "description": "セクションの背景色をTailwind CSSクラスで指定します。例: 'bg-white/80', 'bg-gray-50/80', 'bg-sky-50/80' など。" },
         "title": { "type": "string" },
         "description": { "type": "string" },
         "actions": {

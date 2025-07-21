@@ -120,24 +120,8 @@ const Page: Collection = {
       fields: [
         {
           type: 'string',
-          label: 'Primary Color',
-          name: 'color',
-          ui: {
-            component: ColorPickerInput,
-          },
-        },
-        {
-          type: 'string',
           label: 'Text Color',
           name: 'textColor',
-          ui: {
-            component: ColorPickerInput,
-          },
-        },
-        {
-          type: 'string',
-          label: 'Heading Color',
-          name: 'headingColor',
           ui: {
             component: ColorPickerInput,
           },
