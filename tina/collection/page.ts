@@ -10,6 +10,9 @@ import { calloutBlockSchema } from '@/components/blocks/callout';
 import { statsBlockSchema } from '@/components/blocks/stats';
 import { ctaBlockSchema } from '@/components/blocks/call-to-action';
 import { profileBlockSchema } from '@/components/blocks/profile'; // 手動で追加
+import { company_profileBlockSchema } from '@/components/blocks/company_profile';
+import { portfolioBlockSchema } from '@/components/blocks/portfolio';
+import { pricing_planBlockSchema } from '@/components/blocks/pricing_plan';
 import { galleryBlockSchema } from '@/components/blocks/gallery';
 import { menuBlockSchema } from '@/components/blocks/menu';
 import { informationBlockSchema } from '@/components/blocks/information';
@@ -180,6 +183,9 @@ const Page: Collection = {
         testimonialBlockSchema,
         videoBlockSchema,
         profileBlockSchema, // 手動で追加
+        company_profileBlockSchema,
+        portfolioBlockSchema,
+        pricing_planBlockSchema,
         galleryBlockSchema,
         menuBlockSchema,
         informationBlockSchema,

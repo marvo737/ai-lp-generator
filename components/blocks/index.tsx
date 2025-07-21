@@ -15,6 +15,9 @@ const components = {
     PageBlocksMenu: dynamic(() => import('./menu').then(mod => mod.Menu)),
     PageBlocksGallery: dynamic(() => import('./gallery').then(mod => mod.Gallery)),
     PageBlocksInformation: dynamic(() => import('./information').then(mod => mod.Information)),
+    PageBlocksPricing_plan: dynamic(() => import('./pricing_plan').then(mod => mod.Pricing_plan)),
+    PageBlocksPortfolio: dynamic(() => import('./portfolio').then(mod => mod.Portfolio)),
+    PageBlocksCompany_profile: dynamic(() => import('./company_profile').then(mod => mod.Company_profile)),
   // Note: New blocks will need to be added here manually for now.
   // A fully dynamic solution would require a build step to generate this mapping.
 };

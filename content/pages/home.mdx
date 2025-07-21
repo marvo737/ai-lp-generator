@@ -1,165 +1,118 @@
 ---
-title: 梟(FUKUROU) COFFEE | 池袋の隠れ家カフェ
+title: PixelForge Games | 新宿のゲーム開発会社
 header:
   icon:
-    name: BiSolidCoffeeTogo
-    color: '#654321'
+    name: BiSolidGame
+    color: '#a855f7'
     style: float
-  name: 梟(FUKUROU) COFFEE
+  name: PixelForge Games
   color: default
   nav: []
 theme:
-  color: stone
-  font: serif
-  darkMode: light
+  color: violet
+  font: sans
+  darkMode: dark
 blocks:
-  - background: bg-white
-    headline: 一杯のコーヒーが、日常を少しだけ豊かにする。
-    tagline: 池袋の喧騒を忘れる隠れ家カフェ「梟(FUKUROU) COFFEE」。こだわりのスペシャルティコーヒーと、安らぎの時間をお届けします。
+  - background: bg-white/80
+    headline: 物語を、ピクセルで紡ぐ。
+    tagline: 新宿から世界へ。心に残る体験を創造するゲーム開発スタジオ、PixelForge Games。
     actions:
-      - label: メニューを見る
+      - label: 私たちのゲーム
         type: button
         icon:
-          name: BiSolidRightArrowCircle
+          name: BiSolidDownArrowCircle
           color: '#FFFFFF'
-        link: "#menu"
-      - label: 店舗アクセス
+        link: '#games'
+      - label: 会社概要
         type: link
-        link: "#access"
+        link: '#company'
     image:
-      src: 'https://images.unsplash.com/photo-1559925393-8be0ec4767c8'
-      alt: 温かい光が差し込むカフェのカウンター
+      src: 'https://images.unsplash.com/photo-1611996575749-79a3a2503f28'
+      alt: 抽象的な3Dのクリスタル構造
       videoUrl: ''
     _template: hero
-  - background: bg-gray-50
-    title: 梟(FUKUROU)が選ばれる理由
-    description: お客様一人ひとりの時間に寄り添う、私たちのこだわりです。
+  - background: bg-white/80
+    title: Our Philosophy
+    description: 私たちは、最高のゲーム体験を届けるために3つのコアバリューを大切にしています。
     items:
       - icon:
-          name: BiSolidCoffeeBean
-          color: '#854d0e'
+          name: BiSolidZap
+          color: '#c084fc'
           style: float
-        title: 自家焙煎スペシャルティコーヒー
-        text: 世界各国の農園から厳選した高品質な豆を、店内で丁寧に焙煎。豆の個性を最大限に引き出した一杯をご提供します。
+        title: 革新的なゲームプレイ
+        text: |
+          既存の枠にとらわれず、常に新しい驚きと楽しさを提供するゲームメカニクスを追求します。
       - icon:
-          name: BiSolidBook
-          color: '#a16207'
+          name: BiSolidPen
+          color: '#d8b4fe'
           style: float
-        title: 読書や仕事に最適な空間
-        text: 全席に電源とWi-Fiを完備。木の温もりを感じる落ち着いた空間で、読書やリモートワークなど、思い思いのひとときを。
+        title: 魅力的な世界観と物語
+        text: |
+          プレイヤーが深く没入できる、独創的な世界観と感動的なストーリーを創造します。
       - icon:
-          name: BiSolidCake
-          color: '#ca8a04'
+          name: BiSolidGroup
+          color: '#f3e8ff'
           style: float
-        title: 手作りスイーツと軽食
-        text: コーヒーとの相性を考えて作られた自家製チーズケーキやガトーショコラ。ランチにぴったりのサンドイッチもご用意しています。
+        title: コミュニティとの共創
+        text: |
+          プレイヤーの皆様からのフィードバックを尊重し、共にゲームを育てていくことを目指します。
     _template: features
-  - _template: menu
-    background: bg-white
-    id: menu
-    title: Menu
-    description: こだわりの自家焙煎コーヒーをはじめ、手作りのスイーツやランチにぴったりの軽食をご用意しております。
-    categories:
-      - categoryTitle: Coffee
-        items:
-          - name: ハンドドリップコーヒー (Hot/Iced)
-            price: "600円〜"
-            description: 常時5種類以上の豆からお選びいただけます。豆の個性をお楽しみください。
-            image:
-              src: https://images.unsplash.com/photo-1511920183353-3c61451a38a7
-              alt: ハンドドリップで淹れているコーヒー
-          - name: カフェラテ (Hot/Iced)
-            price: "650円"
-            description: 自家焙煎エスプレッソのコクとミルクの甘みが調和した、優しい味わいです。
-            image:
-              src: https://images.unsplash.com/photo-1572442388855-458a58493603
-              alt: ラテアートが施されたカフェラテ
-          - name: アメリカーノ (Hot/Iced)
-            price: "550円"
-            description: エスプレッソをお湯で割った、すっきりとした味わいのコーヒー。
-            image:
-              src: https://images.unsplash.com/photo-1593443320739-73f449271113
-              alt: グラスに入ったアイスアメリカーノ
-      - categoryTitle: Tea & Others
-        items:
-          - name: アールグレイティー (Hot/Iced)
-            price: "500円"
-            description: ベルガモットの爽やかな香りが特徴のクラシックな紅茶です。
-            image:
-              src: https://images.unsplash.com/photo-1597318181409-cf1a8a25c316
-              alt: カップに入った紅茶
-          - name: 自家製レモネード (Hot/Iced)
-            price: "600円"
-            description: 国産レモンを皮ごと使った、甘酸っぱい自家製シロップで。
-            image:
-              src: https://images.unsplash.com/photo-1623594220035-19d4586d354b
-              alt: グラスに入ったレモネード
-      - categoryTitle: Sweets
-        items:
-          - name: 自家製バスクチーズケーキ
-            price: "550円"
-            description: 表面はこんがり、中はとろりとした食感が人気の看板スイーツです。
-            image:
-              src: https://images.unsplash.com/photo-1604513364421-a3d4f18a6e8b
-              alt: ホールから切り分けられたバスクチーズケーキ
-          - name: 濃厚ガトーショコラ
-            price: "550円"
-            description: チョコレート好きにはたまらない、しっとり濃厚なクラシックケーキ。
-            image:
-              src: https://images.unsplash.com/photo-1578985545062-69928b1d9587
-              alt: 粉砂糖がかかったガトーショコラ
-          - name: 季節のフルーツタルト
-            price: "680円"
-            description: サクサクのタルト生地に、旬のフルーツをたっぷりと。内容はスタッフにお尋ねください。
-            image:
-              src: https://images.unsplash.com/photo-1565000042713-52434b434489
-              alt: 彩り豊かなフルーツタルト
-      - categoryTitle: Food
-        items:
-          - name: アボカドとベーコンのクロックムッシュ
-            price: "850円"
-            description: とろーりチーズとアボカド、ベーコンを乗せて焼き上げた、ボリューム満点のトースト。
-            image:
-              src: https://images.unsplash.com/photo-1606191022485-a78b8a8b1d5c
-              alt: チーズがとろけるクロックムッシュ
-          - name: 自家製ハムと彩り野菜のサンドイッチ
-            price: "780円"
-            description: しっとりとした自家製ハムと新鮮な野菜をたっぷり挟んだヘルシーなサンドイッチ。
-            image:
-              src: https://images.unsplash.com/photo-1528735602780-2552fd46c766
-              alt: 具沢山のサンドイッチ
-  - _template: gallery
-    background: bg-stone-50
-    id: gallery
-    title: 店内の雰囲気
-    description: 木の温もりと緑に囲まれた、落ち着いた空間。カウンター席やテーブル席など、用途に合わせてご利用いただけます。
-    images:
-      - src: https://images.unsplash.com/photo-1528605248644-14dd04022da1
-        alt: 日当たりの良いカフェのテーブル席
-      - src: https://images.unsplash.com/photo-1554118811-1e0d58224f24
-        alt: おしゃれな照明とカウンターがあるカフェの内装
-      - src: https://images.unsplash.com/photo-1534434234199-0a9e7a8338c3
-        alt: 本棚があるカフェの壁際
-      - src: https://images.unsplash.com/photo-1509042239860-f550ce710b93
-        alt: コーヒーカップのクローズアップ
-  - _template: information
-    background: bg-white
-    id: access
-    title: Information
-    address: 〒171-0021 東京都豊島区西池袋1-2-3 ダミービル1F
-    googleMapEmbedUrl: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.358249842523!2d139.7088493152598!3d35.71746498018602!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188d69736c46ed%3A0x86867354b2d9994c!2z5rGg6KKL6aeF!5e0!3m2!1sja!2sjp!4v1677654321098!5m2!1sja!2sjp
-    access: JR各線・東武東上線・西武池袋線 池袋駅西口(中央)から徒歩3分
-    hours: 9:00 - 20:00 (L.O. 19:30)
-    holidays: 不定休
-  - _template: cta
-    background: bg-stone-800
-    title: あなたのための、一杯を。
-    description: "スタッフ一同、最高のコーヒーをご用意して皆様のお越しを心よりお待ちしております。"
+  - background: bg-white/80
+    title: Our Games
+    description: PixelForgeが魂を込めて開発したゲームのラインナップです。
+    id: games
+    items:
+      - title: ASTRAL ODYSSEY
+        description: 星々の記憶を巡る、壮大なSF・RPG。プレイヤーは失われた技術を求め、広大な銀河を冒険する。
+        image:
+          src: 'https://images.unsplash.com/photo-1580234811497-9df7fd2f357e'
+          alt: 宇宙船が惑星の上を飛行しているアート
+        url: '#'
+        tags:
+          - PC
+          - PlayStation 5
+          - Xbox Series X|S
+      - title: NEON SHADOW
+        description: サイバーパンク都市を駆ける、ハイスピード・ステルスアクション。影となり、巨大企業の陰謀を暴け。
+        image:
+          src: 'https://images.unsplash.com/photo-1531393344318-69564c7285b6'
+          alt: ネオンに照らされた未来的な都市の路지
+        url: '#'
+        tags:
+          - PC
+          - Nintendo Switch
+      - title: FORGOTTEN FABLE
+        description: 絵本のような世界で繰り広げられる、心温まる謎解きアドベンチャー。忘れられた森の秘密を解き明かそう。
+        image:
+          src: 'https://images.unsplash.com/photo-1506564461999-f42199480e7d'
+          alt: 霧のかかった神秘的な森の小道
+        url: '#'
+        tags:
+          - PC
+          - iOS
+          - Android
+    _template: portfolio
+  - background: bg-white/80
+    title: Company Profile
+    id: company
+    items:
+      - label: 会社名
+        value: 株式会社PixelForge (PixelForge Inc.)
+      - label: 設立
+        value: 2024年4月1日
+      - label: 所在地
+        value: 〒160-0023 東京都新宿区西新宿2-8-1 ダミービル40F
+      - label: 代表者
+        value: 代表取締役 架空 太郎
+      - label: 事業内容
+        value: コンピュータゲームの企画、開発、運営及び販売
+    _template: company_profile
+  - title: Join Our Adventure
+    description: 私たちと一緒に、世界を驚かせるゲームを作りませんか？PixelForgeでは、情熱あふれる新たな才能を常に探しています。
     actions:
-      - label: メニューをもう一度見る
-        type: link
-        link: "#menu"
-      - label: アクセスを確認する
-        type: link
-        link: "#access"
+      - label: 採用情報を見る
+        type: button
+        link: '#'
+    _template: cta
 ---
+

@@ -8,7 +8,19 @@ import { sectionBlockSchemaField } from '../layout/section';
 export const __COMPONENT_NAME__ = ({ data }: { data: any }) => {
   return (
     <Section background={data.background!} className="prose prose-lg">
-      __FIELDS_JSX__
+      <div className="text-center">
+        {data.title && (
+          <h2 className="text-balance text-4xl font-semibold lg:text-5xl" data-tina-field={tinaField(data, 'title')}>
+            {data.title}
+          </h2>
+        )}
+        {data.description && (
+          <p className="mt-4" data-tina-field={tinaField(data, 'description')}>
+            {data.description}
+          </p>
+        )}
+      </div>
+      {/* __FIELDS_JSX__ */}
     </Section>
   );
 };
@@ -22,6 +34,19 @@ export const __SCHEMA_NAME__: Template = {
   },
   fields: [
     sectionBlockSchemaField as any,
+    {
+      type: "string",
+      label: "タイトル",
+      name: "title",
+    },
+    {
+      type: "string",
+      label: "説明文",
+      name: "description",
+      ui: {
+        component: "textarea",
+      },
+    },
     // __FIELDS_SCHEMA__
   ],
 };
