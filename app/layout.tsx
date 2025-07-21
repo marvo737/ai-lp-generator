@@ -6,7 +6,6 @@ import { VideoDialogProvider } from "@/components/ui/VideoDialogContext";
 import VideoDialog from "@/components/ui/VideoDialog";
 
 import "@/styles.css";
-import { TailwindIndicator } from "@/components/ui/breakpoint-indicator";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -41,7 +40,6 @@ export default function RootLayout({
           {children}
           <VideoDialog />
         </VideoDialogProvider>
-        <TailwindIndicator />
       </body>
     </html>
   );
