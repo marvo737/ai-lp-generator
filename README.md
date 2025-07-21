@@ -37,7 +37,6 @@ GEMINI_API_KEY=あなたのGoogle Gemini APIキー
 GEMINI_MODEL_NAME="gemini-2.5-pro"
 GEMINI_MAX_OUTPUT_TOKENS=24576
 GEMINI_TEMPERATURE=0.3
-
 ```
 
 ### プロジェクトの実行
