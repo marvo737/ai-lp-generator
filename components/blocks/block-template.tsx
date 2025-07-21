@@ -7,7 +7,7 @@ import { sectionBlockSchemaField } from '../layout/section';
 // --- Component ---
 export const __COMPONENT_NAME__ = ({ data }: { data: any }) => {
   return (
-    <Section background={data.background!}>
+    <Section background={data.background!} className="prose prose-lg">
       __FIELDS_JSX__
     </Section>
   );

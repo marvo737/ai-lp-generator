@@ -19,17 +19,54 @@ function sanitizeFields(fields: any[]): any[] {
 
 // --- JSX生成ロジックの改良 ---
 function generateFieldsJsx(fields: any[]): string {
-  return fields.map((field: any) => {
+  let jsx = '';
+  const titleField = fields.find(f => f.name.toLowerCase().includes('title') || f.name.toLowerCase().includes('headline'));
+  const otherFields = fields.filter(f => f !== titleField);
+
+  if (titleField) {
+    jsx += `<h1 data-tina-field={tinaField(data, "${titleField.name}")}>{data.${titleField.name}}</h1>\\n`;
+  }
+
+  otherFields.forEach(field => {
     const fieldAccessor = `data.${field.name}`;
-    // フィールドがオブジェクトまたは配列の場合、JSON.stringifyで安全に表示
-    const renderExpression = `typeof ${fieldAccessor} === 'object' ? JSON.stringify(${fieldAccessor}, null, 2) : ${fieldAccessor}`;
-    
-    // preタグで囲むことで、整形されたJSONが見やすくなる
-    return `      <div data-tina-field={tinaField(data, "${field.name}")}>
-        <strong>${field.label}:</strong>
-        <pre><code>{${renderExpression}}</code></pre>
-      </div>`;
-  }).join('\n');
+    if (field.list === true && field.type === 'object') {
+      jsx += `
+        <div data-tina-field={tinaField(data, "${field.name}")}>
+          <h2>${field.label}</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 not-prose">
+            {${fieldAccessor}?.map((item, index) => (
+              <div key={index} className="card bg-base-100 shadow-xl">
+                {item.image?.src && (
+                  <figure>
+                    <img
+                      src={item.image.src}
+                      alt={item.image.alt || ''}
+                      className="w-full h-48 object-cover"
+                    />
+                  </figure>
+                )}
+                <div className="card-body">
+                  {item.name && <h3 className="card-title">{item.name}</h3>}
+                  {item.description && <p>{item.description}</p>}
+                  {item.price && <p className="font-semibold">{item.price}</p>}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      `;
+    } else {
+      const renderExpression = `typeof ${fieldAccessor} === 'object' ? JSON.stringify(${fieldAccessor}, null, 2) : String(${fieldAccessor})`;
+      jsx += `
+        <div data-tina-field={tinaField(data, "${field.name}")}>
+          <h2>${field.label}</h2>
+          <p>{${renderExpression}}</p>
+        </div>
+      `;
+    }
+  });
+
+  return jsx;
 }
 
 export async function POST(request: Request) {

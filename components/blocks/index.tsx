@@ -13,7 +13,8 @@ const components = {
   PageBlocksCta: dynamic(() => import('./call-to-action').then(mod => mod.CallToAction)),
   PageBlocksProfile: dynamic(() => import('./profile').then(mod => mod.Profile)),
     PageBlocksMenu: dynamic(() => import('./menu').then(mod => mod.Menu)),
-    PageBlocksMenu: dynamic(() => import('./menu').then(mod => mod.Menu)),
+    PageBlocksGallery: dynamic(() => import('./gallery').then(mod => mod.Gallery)),
+    PageBlocksInformation: dynamic(() => import('./information').then(mod => mod.Information)),
   // Note: New blocks will need to be added here manually for now.
   // A fully dynamic solution would require a build step to generate this mapping.
 };

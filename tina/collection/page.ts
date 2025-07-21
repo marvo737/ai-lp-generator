@@ -10,7 +10,9 @@ import { calloutBlockSchema } from '@/components/blocks/callout';
 import { statsBlockSchema } from '@/components/blocks/stats';
 import { ctaBlockSchema } from '@/components/blocks/call-to-action';
 import { profileBlockSchema } from '@/components/blocks/profile'; // 手動で追加
+import { galleryBlockSchema } from '@/components/blocks/gallery';
 import { menuBlockSchema } from '@/components/blocks/menu';
+import { informationBlockSchema } from '@/components/blocks/information';
 
 const Page: Collection = {
   label: 'Home',
@@ -178,7 +180,9 @@ const Page: Collection = {
         testimonialBlockSchema,
         videoBlockSchema,
         profileBlockSchema, // 手動で追加
+        galleryBlockSchema,
         menuBlockSchema,
+        informationBlockSchema,
       ],
     },
   ],
