@@ -16,6 +16,7 @@ import { pricing_planBlockSchema } from '@/components/blocks/pricing_plan';
 import { galleryBlockSchema } from '@/components/blocks/gallery';
 import { menuBlockSchema } from '@/components/blocks/menu';
 import { informationBlockSchema } from '@/components/blocks/information';
+import { access_infoBlockSchema } from '@/components/blocks/access_info';
 
 const Page: Collection = {
   label: 'Home',
@@ -127,6 +128,22 @@ const Page: Collection = {
         },
         {
           type: 'string',
+          label: 'Text Color',
+          name: 'textColor',
+          ui: {
+            component: ColorPickerInput,
+          },
+        },
+        {
+          type: 'string',
+          label: 'Heading Color',
+          name: 'headingColor',
+          ui: {
+            component: ColorPickerInput,
+          },
+        },
+        {
+          type: 'string',
           name: 'font',
           label: 'Font Family',
           options: [
@@ -189,6 +206,7 @@ const Page: Collection = {
         galleryBlockSchema,
         menuBlockSchema,
         informationBlockSchema,
+        access_infoBlockSchema,
       ],
     },
   ],

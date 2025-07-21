@@ -3,82 +3,44 @@ import { tinaField } from 'tinacms/dist/react';
 import type { Template } from 'tinacms';
 import { Section } from '../layout/section';
 import { sectionBlockSchemaField } from '../layout/section';
-import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
-
-interface MenuItem {
-  name?: string | null;
-  price?: string | null;
-  description?: string | null;
-  image?: {
-    src?: string | null;
-    alt?: string | null;
-  } | null;
-}
-
-interface MenuCategory {
-  categoryTitle?: string | null;
-  items?: (MenuItem | null)[] | null;
-}
-
-interface MenuData {
-  background?: string | null;
-  id?: string | null;
-  title?: string | null;
-  description?: string | null;
-  categories?: (MenuCategory | null)[] | null;
-}
 
 // --- Component ---
-export const Menu = ({ data }: { data: MenuData }) => {
+export const Menu = ({ data }: { data: any }) => {
   return (
-    <Section background={data.background!} id={data.id || undefined}>
-      <div className="container mx-auto py-12">
-        {data.title && (
-          <h2 data-tina-field={tinaField(data as any, 'title')} className="text-3xl font-bold text-center mb-2">
-            {data.title}
+    <Section background={data.background!} className="prose prose-lg">
+      <div className="text-center">
+        {data.menuTitle && (
+          <h2 className="text-balance text-4xl font-semibold lg:text-5xl" data-tina-field={tinaField(data, 'menuTitle')}>
+            {data.menuTitle}
           </h2>
         )}
-        {data.description && (
-          <p data-tina-field={tinaField(data as any, 'description')} className="text-lg text-center text-muted-foreground mb-8">
-            {data.description}
-          </p>
+        {data.menuDescription && (
+          <div className="mt-4" data-tina-field={tinaField(data, 'menuDescription')}>
+            {/* Assuming rich-text content here */}
+            <p>{data.menuDescription}</p>
+          </div>
         )}
-
-        <div className="space-y-8">
-          {data.categories?.map((category, categoryIndex) => {
-            if (!category) return null;
-            return (
-              <div key={categoryIndex} data-tina-field={tinaField(category as any)}>
-                {category.categoryTitle && (
-                  <h3 className="text-2xl font-semibold mb-4">{category.categoryTitle}</h3>
-                )}
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                  {category.items?.map((item, itemIndex) => {
-                    if (!item) return null;
-                    return (
-                      <Card key={itemIndex} data-tina-field={tinaField(item as any)} className="flex flex-col">
-                        {item.image?.src && (
-                          <img
-                            src={item.image.src}
-                            alt={item.image.alt || ''}
-                            className="w-full h-48 object-cover rounded-t-xl"
-                            data-tina-field={tinaField(item as any, 'image')}
-                          />
-                        )}
-                        <CardHeader>
-                          {item.name && <CardTitle data-tina-field={tinaField(item as any, 'name')}>{item.name}</CardTitle>}
-                        </CardHeader>
-                        <CardContent className="flex-grow">
-                          {item.description && <p data-tina-field={tinaField(item as any, 'description')} className="text-muted-foreground mb-2">{item.description}</p>}
-                          {item.price && <p data-tina-field={tinaField(item as any, 'price')} className="font-semibold text-lg">{item.price}</p>}
-                        </CardContent>
-                      </Card>
-                    );
-                  })}
-                </div>
+      </div>
+      <div data-tina-field={tinaField(data, "items")} className="mt-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 not-prose">
+          {data.items?.map((item: any, index: number) => (
+            <div key={index} className="card bg-base-100 shadow-xl">
+              {item.image?.src && (
+                <figure>
+                  <img
+                    src={item.image.src}
+                    alt={item.image.alt || ''}
+                    className="w-full h-48 object-cover"
+                  />
+                </figure>
+              )}
+              <div className="card-body">
+                {item.name && <h3 className="card-title">{item.name}</h3>}
+                {item.itemDescription && <p>{item.itemDescription}</p>}
+                {item.price && <p className="font-semibold">{item.price}</p>}
               </div>
-            );
-          })}
+            </div>
+          ))}
         </div>
       </div>
     </Section>
@@ -95,68 +57,50 @@ export const menuBlockSchema: Template = {
   fields: [
     sectionBlockSchemaField as any,
     {
-      "type": "string",
-      "name": "id",
-      "label": "ID (for anchor links)"
+      type: "string",
+      name: "menuTitle",
+      label: "Title"
     },
     {
-      "type": "string",
-      "name": "title",
-      "label": "Title"
+      type: "rich-text",
+      name: "menuDescription",
+      label: "Description"
     },
     {
-      "type": "string",
-      "name": "description",
-      "label": "Description"
-    },
-    {
-      "type": "object",
-      "name": "categories",
-      "label": "Menu Categories",
-      "list": true,
-      "fields": [
+      type: "object",
+      name: "items",
+      label: "Menu Items",
+      list: true,
+      fields: [
         {
-          "type": "string",
-          "name": "categoryTitle",
-          "label": "Category Title"
+          type: "string",
+          name: "name",
+          label: "Name"
         },
         {
-          "type": "object",
-          "name": "items",
-          "label": "Menu Items",
-          "list": true,
-          "fields": [
+          type: "string",
+          name: "price",
+          label: "Price"
+        },
+        {
+          type: "string",
+          name: "itemDescription",
+          label: "Description"
+        },
+        {
+          type: "object",
+          name: "image",
+          label: "Image",
+          fields: [
             {
-              "type": "string",
-              "name": "name",
-              "label": "Item Name"
+              type: "string",
+              name: "src",
+              label: "Image URL"
             },
             {
-              "type": "string",
-              "name": "price",
-              "label": "Price"
-            },
-            {
-              "type": "string",
-              "name": "description",
-              "label": "Item Description"
-            },
-            {
-              "type": "object",
-              "name": "image",
-              "label": "Item Image",
-              "fields": [
-                {
-                  "type": "string",
-                  "name": "src",
-                  "label": "Image URL"
-                },
-                {
-                  "type": "string",
-                  "name": "alt",
-                  "label": "Alt Text"
-                }
-              ]
+              type: "string",
+              name: "alt",
+              label: "Alt Text"
             }
           ]
         }

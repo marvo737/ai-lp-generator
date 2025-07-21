@@ -11,12 +11,18 @@ export const Pricing_plan = ({ data }: { data: PageBlocksPricing_Plan }) => {
     <Section background={data.background!}>
       <div className="text-center">
         {data.title && (
-          <h2 className="text-balance text-4xl font-semibold lg:text-5xl" data-tina-field={tinaField(data, 'title')}>
+          <h2
+            className="text-balance text-4xl font-semibold lg:text-5xl"
+            data-tina-field={tinaField(data, 'title')}
+          >
             {data.title}
           </h2>
         )}
         {data.description && (
-          <p className="mt-4" data-tina-field={tinaField(data, 'description')}>
+          <p
+            className="mt-4"
+            data-tina-field={tinaField(data, 'description')}
+          >
             {data.description}
           </p>
         )}
@@ -24,28 +30,30 @@ export const Pricing_plan = ({ data }: { data: PageBlocksPricing_Plan }) => {
 
       <div data-tina-field={tinaField(data, "plans")} className="mt-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 not-prose">
-          {data.plans?.map((item, index) => (
-            <div key={index} className="card bg-base-100 shadow-xl">
-              {item.image?.src && (
-                <figure>
-                  <img
-                    src={item.image.src}
-                    alt={item.image.alt || ''}
-                    className="w-full h-48 object-cover"
-                  />
-                </figure>
-              )}
-              <div className="card-body">
-                {item.name && <h3 className="card-title">{item.name}</h3>}
-                {item.duration && <p className="text-sm text-gray-500">{item.duration}</p>}
-                {item.price && <p className="font-semibold text-xl mt-2">{item.price}</p>}
-                {item.description && <p className="mt-4 text-gray-700">{item.description}</p>}
-                {item.isFeatured && (
-                  <div className="badge badge-secondary absolute top-4 right-4">おすすめ</div>
+          {data.plans?.map((item, index) =>
+            item ? (
+              <div key={index} className="card bg-base-100 shadow-xl">
+                {item.image?.src && (
+                  <figure>
+                    <img
+                      src={item.image.src}
+                      alt={item.image.alt || ''}
+                      className="w-full h-48 object-cover"
+                    />
+                  </figure>
                 )}
+                <div className="card-body">
+                  {item.name && <h3 className="card-title">{item.name}</h3>}
+                  {item.duration && <p className="text-sm text-gray-500">{item.duration}</p>}
+                  {item.price && <p className="font-semibold text-xl mt-2">{item.price}</p>}
+                  {item.description && <p className="mt-4 text-gray-700">{item.description}</p>}
+                  {item.isFeatured && (
+                    <div className="badge badge-secondary absolute top-4 right-4">おすすめ</div>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            ) : null
+          )}
         </div>
       </div>
     </Section>

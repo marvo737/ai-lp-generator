@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 import { promptManager } from '../../../prompts';
+import client from '../../../tina/__generated__/client';
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
 
@@ -35,7 +36,11 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Prompt is required' }, { status: 400 });
     }
 
-    let fullPromptContext = await promptManager.generatePrompt(prompt);
+    const { data: pageData } = await client.queries.page({
+      relativePath: "home.mdx",
+    });
+
+    let fullPromptContext = await promptManager.generatePrompt(prompt, pageData.page.theme);
 
     if (relativeFilePath) {
       const fs = await import('fs/promises');
@@ -73,18 +78,28 @@ export async function POST(request: Request) {
 
     // --- Tool Calling Logic ---
     if (toolCalls && Array.isArray(toolCalls)) {
+      console.warn(`Tool calls detected but no tools are available:`, toolCalls);
+      
       for (const call of toolCalls) {
-        try {
-          await callApi(call.tool, call.params);
-        } catch (error) {
-          console.error(`Tool call failed for ${call.tool}:`, error);
-          // ツールコール失敗時も処理を継続し、エラーをチャットで返す
+        // 新規ブロック作成ツールは拒否
+        if (call.tool === 'generate_component' || call.tool === 'generate/component') {
+          console.error(`Blocked tool call: ${call.tool}`);
           return NextResponse.json({
-            error: `ツール '${call.tool}' の実行に失敗しました。`,
-            chatResponse: chatResponse || `ツール実行中にエラーが発生しました: ${error instanceof Error ? error.message : String(error)}`,
+            error: `新規ブロック作成は禁止されています。`,
+            chatResponse: chatResponse || `新規ブロックの作成はできません。既存の16種類のブロック（hero、content、testimonial、features、video、callout、stats、cta、profile、gallery、information、pricing_plan、portfolio、company_profile、menu、access_info）を使用してページを構築してください。`,
             history: await chat.getHistory(),
-          }, { status: 500 });
+          }, { status: 403 });
         }
+
+        // 存在しないツールの呼び出しをブロック
+        if (call.tool === 'update_page_content' || call.tool === 'update/page/content') {
+          console.warn(`Blocked unknown tool call: ${call.tool}. Content will be updated via mdxContent field instead.`);
+          // ツール呼び出しをスキップして処理を継続
+          continue;
+        }
+
+        // その他の定義されていないツールもブロック
+        console.warn(`Skipping undefined tool call: ${call.tool}`);
       }
     }
 

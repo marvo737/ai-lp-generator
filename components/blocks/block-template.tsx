@@ -1,3 +1,6 @@
+// このファイルは新規ブロック作成機能が無効化されたため、使用されていません。
+// 新規ブロック作成機能を再有効化する場合のみ必要です。
+
 import React from 'react';
 import { tinaField } from 'tinacms/dist/react';
 import type { Template } from 'tinacms';

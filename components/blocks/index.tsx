@@ -3,6 +3,7 @@ import { Page, PageBlocks } from "../../tina/__generated__/types";
 import dynamic from 'next/dynamic';
 
 const components = {
+  // 基本の8種類のブロックのみ（新規ブロック作成は無効化済み）
   PageBlocksVideo: dynamic(() => import('./video').then(mod => mod.Video)),
   PageBlocksHero: dynamic(() => import('./hero').then(mod => mod.Hero)),
   PageBlocksCallout: dynamic(() => import('./callout').then(mod => mod.Callout)),
@@ -11,15 +12,18 @@ const components = {
   PageBlocksFeatures: dynamic(() => import('./features').then(mod => mod.Features)),
   PageBlocksTestimonial: dynamic(() => import('./testimonial').then(mod => mod.Testimonial)),
   PageBlocksCta: dynamic(() => import('./call-to-action').then(mod => mod.CallToAction)),
+
+  // 以下は過去に生成された追加ブロック（既存コンテンツとの互換性のため保持）
   PageBlocksProfile: dynamic(() => import('./profile').then(mod => mod.Profile)),
-    PageBlocksMenu: dynamic(() => import('./menu').then(mod => mod.Menu)),
-    PageBlocksGallery: dynamic(() => import('./gallery').then(mod => mod.Gallery)),
-    PageBlocksInformation: dynamic(() => import('./information').then(mod => mod.Information)),
-    PageBlocksPricing_plan: dynamic(() => import('./pricing_plan').then(mod => mod.Pricing_plan)),
-    PageBlocksPortfolio: dynamic(() => import('./portfolio').then(mod => mod.Portfolio)),
-    PageBlocksCompany_profile: dynamic(() => import('./company_profile').then(mod => mod.Company_profile)),
-  // Note: New blocks will need to be added here manually for now.
-  // A fully dynamic solution would require a build step to generate this mapping.
+  PageBlocksGallery: dynamic(() => import('./gallery').then(mod => mod.Gallery)),
+  PageBlocksInformation: dynamic(() => import('./information').then(mod => mod.Information)),
+  PageBlocksPricing_plan: dynamic(() => import('./pricing_plan').then(mod => mod.Pricing_plan)),
+  PageBlocksPortfolio: dynamic(() => import('./portfolio').then(mod => mod.Portfolio)),
+  PageBlocksCompany_profile: dynamic(() => import('./company_profile').then(mod => mod.Company_profile)),
+  PageBlocksMenu: dynamic(() => import('./menu').then(mod => mod.Menu)),
+  PageBlocksAccess_info: dynamic(() => import('./access_info').then(mod => mod.Access_info)),
+
+  // 注意：新規ブロック作成機能は無効化されています
 };
 
 export const Blocks = (props: Omit<Page, "id" | "_sys" | "_values">) => {

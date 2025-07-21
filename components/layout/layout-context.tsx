@@ -46,6 +46,12 @@ export const LayoutProvider: React.FC<LayoutProviderProps> = ({
 
   const theme = globalSettings.theme;
 
+  const cssVariables = {
+    '--text-color': theme?.textColor,
+    '--heading-color': theme?.headingColor,
+    '--primary-color': theme?.color,
+  } as React.CSSProperties;
+
   return (
     <LayoutContext.Provider
       value={{
@@ -56,7 +62,7 @@ export const LayoutProvider: React.FC<LayoutProviderProps> = ({
         theme,
       }}
     >
-      {children}
+      <div style={cssVariables}>{children}</div>
     </LayoutContext.Provider>
   );
 };
