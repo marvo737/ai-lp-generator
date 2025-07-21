@@ -107,18 +107,22 @@ const EditorClient = () => {
     <div className="flex h-screen bg-gray-100 font-sans">
       {/* Left Column: Chat UI */}
       <div className="w-1/3 flex flex-col bg-white border-r border-gray-200">
-        <div className="p-4 border-b border-gray-200 flex justify-between items-center">
+        <div className="p-4 border-b border-gray-200">
           <h1 className="text-xl font-bold">AI LP Generator</h1>
-          <button
-            onClick={handleClearHistory}
-            className="px-3 py-1 text-sm rounded-md bg-red-500 text-white hover:bg-red-600"
-            title="Clear chat history"
-          >
-            Clear
-          </button>
         </div>
-        <div className="flex-grow p-4 overflow-y-auto">
-          <div className="space-y-4">
+        <div className="flex-grow flex flex-col overflow-y-auto">
+          {/* History Control Area */}
+          <div className="p-2 border-gray-100 flex justify-end bg-white">
+            <button
+              onClick={handleClearHistory}
+              className="px-3 py-1 text-xs rounded-md bg-red-400 text-white hover:bg-red-500 transition-colors"
+              title="Clear chat history"
+            >
+              履歴を削除
+            </button>
+          </div>
+          <div className="flex-grow p-4">
+            <div className="space-y-4">
             {displayMessages.map((msg, index) => (
               <div key={index} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                 <div className={`p-3 rounded-lg max-w-xs ${
@@ -136,6 +140,7 @@ const EditorClient = () => {
                 </div>
               </div>
             )}
+            </div>
           </div>
         </div>
         <div className="p-4 border-t border-gray-200">
@@ -162,22 +167,30 @@ const EditorClient = () => {
 
       {/* Right Column: Preview */}
       <div className="w-2/3 flex flex-col">
-        <div className="p-4 border-b border-gray-200 bg-white flex justify-between items-center">
-          <h2 className="text-xl font-bold">Live Preview</h2>
-          <div className="flex space-x-2">
+        <div className="bg-gray-100 px-4 pt-2">
+          <div className="flex space-x-1">
             <button
               onClick={() => setViewMode('preview')}
-              className={`px-3 py-1 text-sm rounded-md ${viewMode === 'preview' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'}`}
+              className={`px-4 py-2 text-sm font-medium rounded-t-lg border border-b-0 transition-colors ${
+                viewMode === 'preview'
+                  ? 'bg-white text-gray-900 border-gray-300 shadow-sm'
+                  : 'bg-gray-200 text-gray-600 border-gray-300 hover:bg-gray-300'
+              }`}
             >
-              Preview
+              Live Preview
             </button>
             <button
               onClick={() => setViewMode('admin')}
-              className={`px-3 py-1 text-sm rounded-md ${viewMode === 'admin' ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-700'}`}
+              className={`px-4 py-2 text-sm font-medium rounded-t-lg border border-b-0 transition-colors ${
+                viewMode === 'admin'
+                  ? 'bg-white text-gray-900 border-gray-300 shadow-sm'
+                  : 'bg-gray-200 text-gray-600 border-gray-300 hover:bg-gray-300'
+              }`}
             >
-              TinaCMS Admin
+              Visual Editor
             </button>
           </div>
+          <div className="border-b border-gray-300"></div>
         </div>
         <div className="flex-grow p-4">
           <div className="w-full h-full bg-white rounded-lg shadow-md">
