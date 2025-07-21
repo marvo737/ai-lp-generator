@@ -29,9 +29,9 @@ const TestimonialCard = ({ testimonial }: { testimonial: PageBlocksTestimonialTe
       <CardContent className="grid grid-cols-[auto_1fr] gap-3 pt-6">
         <Avatar className="size-9" data-tina-field={tinaField(testimonial, 'avatar')}>
           {testimonial.avatar && (
-            <AvatarImage alt={testimonial.author!} src={testimonial.avatar} loading="lazy" width="120" height="120" />
+            <AvatarImage alt={testimonial.author || ''} src={testimonial.avatar} loading="lazy" width="120" height="120" />
           )}
-          <AvatarFallback>{testimonial.author!.split(" ").map((word) => word[0]).join("")}</AvatarFallback>
+          <AvatarFallback>{testimonial.author?.split(" ").map((word) => word[0]).join("")}</AvatarFallback>
         </Avatar>
 
         <div>
