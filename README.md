@@ -1,107 +1,70 @@
-# Tina Starter 🦙
+# AI LP Generator
 
-![tina-cloud-starter-demo](https://user-images.githubusercontent.com/103008/130587027-995ccc45-a852-4f90-b658-13e8e0517339.gif)
+Google Gemini API を搭載した AI ランディングページジェネレーターのモックアプリケーション。  
+ローカル環境でウェブサイトのコンテンツを視覚的に編集し、AI を活用してランディングページのコンテンツを生成することができます。
 
-This Next.js starter is powered by [TinaCMS](https://app.tina.io) for you and your team to visually live edit the structured content of your website. ✨
+コンテンツはローカルファイルシステム上の Markdown および JSON ファイルを介して管理され、ローカル GraphQL API を介してクエリされます。
 
-The content is managed through Markdown and JSON files stored in your GitHub repository, and queried through Tina GraphQL API.
+### 主な機能
 
-### Features
+- ローカルファイルシステムベースのコンテンツ管理
+- Google Gemini API を使用した**AI コンテンツ生成**で、ページコンテンツとコンポーネント構造を作成
+- TinaCMSのVisual Editingでサイトをローカルで視覚的に編集
+- ローカル GraphQL サーバーを使用したファイルシステムからの開発ワークフロー
+- フレームワークにはNext.jsを採用
 
-- [Tina Headless CMS](https://app.tina.io) for authentication, content modeling, visual editing and team management.
-- [Vercel](https://vercel.com) deployment to visually edit your site from the `/admin` route.
-- Local development workflow from the filesystem with a local GraqhQL server.
+## ローカル開発
 
-## Requirements
-
-- Git, [Node.js Active LTS](https://nodejs.org/en/about/releases/), pnpm installed for local development.
-- A [TinaCMS](https://app.tina.io) account for live editing.
-
-## Local Development
-
-Install the project's dependencies:
-
-> [!NOTE]  
-> [Do you know the best package manager for Node.js?](https://www.ssw.com.au/rules/best-package-manager-for-node/) Using the right package manager can greatly enhance your development workflow. We recommend using pnpm for its speed and efficient handling of dependencies. Learn more about why pnpm might be the best choice for your projects by checking out this rule from SSW.
-
+プロジェクトの依存関係をインストールします。
 
 ```
-pnpm install
+npm install
 ```
 
-Run the project locally:
+### 環境変数
+
+プロジェクトを実行する前に、環境変数を設定する必要があります。`.env.example`ファイルを`.env`という名前の新しいファイルにコピーします。
 
 ```
-pnpm dev
+cp .env.example .env
 ```
 
-### Local URLs
-
-- http://localhost:3000 : browse the website
-- http://localhost:3000/admin : connect to Tina Cloud and go in edit mode
-- http://localhost:3000/exit-admin : log out of Tina Cloud
-- http://localhost:4001/altair/ : GraphQL playground to test queries and browse the API documentation
-
-## Deployment
-
-### GitHub Pages
-
-This starter can be deployed to GitHub Pages. A GitHub Actions workflow is included that handles the build and deployment process. 
-
-To deploy to GitHub Pages:
-
-1. In your repository settings, ensure GitHub Pages is enabled and set to deploy from the `gh-pages` branch
-2. Push changes to your main branch - the workflow will automatically build and deploy the site
-
-> [!NOTE]
-> When deploying to GitHub Pages, you'll need to update your secrets in Settings | Secrets and variables | Actions to include:
-> - `NEXT_PUBLIC_TINA_CLIENT_ID`
-> - `TINA_TOKEN`
->
-> You get these from your TinaCloud project - [read the docs](https://tina.io/docs/tina-cloud/deployment-options/github-pages)
-
-> [!IMPORTANT]
-> GitHub Pages does not support server side code, so this will run as a static site. If you don't want to deploy to GitHub pages, just delete `.github/workflows/build-and-deploy.yml`
-
-### Building the Starter Locally (Using the hosted content API)
-
-Replace the `.env.example`, with `.env`
+次に、`.env`ファイルに必要な値を入力します。
 
 ```
-NEXT_PUBLIC_TINA_CLIENT_ID=<get this from the project you create at app.tina.io>
-TINA_TOKEN=<get this from the project you create at app.tina.io>
-NEXT_PUBLIC_TINA_BRANCH=<Specify the branch with Tina configured>
+# Google Gemini API用（必須）
+GEMINI_API_KEY=あなたのGoogle Gemini APIキー
+GEMINI_MODEL_NAME="gemini-2.5-pro"
+GEMINI_MAX_OUTPUT_TOKENS=24576
+GEMINI_TEMPERATURE=0.3
+
 ```
 
-Build the project:
+### プロジェクトの実行
 
-```bash
-pnpm build
+プロジェクトをローカルで実行します。
+
+```
+npm run dev
 ```
 
-## Getting Help
+### ローカル URL
 
-To get help with any TinaCMS challenges you may have:
+サーバーを起動させたら以下にアクセスしてエディタから操作してください。
 
-- Visit the [documentation](https://tina.io/docs/) to learn about Tina.
-- [Join our Discord](https://discord.gg/zumN63Ybpf) to share feedback.
-- Visit the [community forum](https://community.tinacms.org/) to ask questions.
-- Get support through the chat widget on the TinaCMS Dashboard
-- [Email us](mailto:support@tina.io) to schedule a call with our team and share more about your context and what you're trying to achieve.
-- [Search or open an issue](https://github.com/tinacms/tinacms/issues) if something is not working.
-- Reach out on Twitter at [@tina_cms](https://twitter.com/tina_cms).
+- http://localhost:3000/ai-editor
 
-## Development tips
+編集対象の LP そのものにアクセスしたい場合は以下にアクセス。
 
-### Visual Studio Code GraphQL extension
+-  http://localhost:3000
 
-[Install the GraphQL extension](https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql) to benefit from type auto-completion.
+## プロジェクト構造
 
-### Typescript
-
-A good way to ensure your components match the shape of your data is to leverage the auto-generated TypeScript types.
-These are rebuilt when your `tina` config changes.
-
-## LICENSE
-
-Licensed under the [Apache 2.0 license](./LICENSE).
+```
+├── app/                    # Next.js App Router
+├── components/             # React コンポーネント
+├── content/               # Markdown コンテンツファイル
+├── tina/                  # TinaCMS 設定
+├── prompts/               # AIプロンプトテンプレート
+└── public/                # 静的ファイル
+```
